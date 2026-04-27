@@ -1,0 +1,5 @@
+cc_binary(
+    name = "my_sdl_app",
+    srcs = ["main.cc"],
+    deps = ["//third_party/sdl:sdl"],
+)

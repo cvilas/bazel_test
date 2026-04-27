@@ -1,0 +1,14 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+cmake(
+    name = "sdl",
+    lib_source = "@sdl_src//:all",
+    cache_entries = {
+        "CMAKE_BUILD_TYPE": "Release",
+        "SDL_SHARED": "OFF",
+        "SDL_STATIC": "ON",
+        "SDL_TEST": "OFF",
+    },
+    out_static_libs = ["libSDL3.a"],
+    visibility = ["//visibility:public"],
+)
