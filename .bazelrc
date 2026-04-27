@@ -1,0 +1,4 @@
+# Force real compiler binaries - ccache breaks rules_foreign_cc sandbox builds
+build --action_env=CC=/usr/bin/gcc
+build --action_env=CXX=/usr/bin/g++
+build --action_env=LD=/usr/bin/ld
