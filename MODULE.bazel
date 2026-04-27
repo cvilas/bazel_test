@@ -10,4 +10,11 @@ http_archive(
     urls = ["https://github.com/libsdl-org/SDL/releases/download/release-3.4.4/SDL3-3.4.4.tar.gz"],
     strip_prefix = "SDL3-3.4.4",
     sha256 = "ee712dbe6a89bb140bbfc2ce72358fb5ee5cc2240abeabd54855012db30b3864",
+    build_file_content = """
+filegroup(
+    name = "all",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+""",
 )
