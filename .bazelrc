@@ -1,14 +1,6 @@
-# rules_foreign_cc bootstraps make/cmake as host (exec) tools.
-# ccache at /usr/lib64/ccache/gcc breaks inside Bazel's sandbox because
-# it cannot write to its cache directory. Force real compiler binaries for
-# both target and host/exec toolchains.
-build --action_env=CC=/usr/bin/gcc
-build --action_env=CXX=/usr/bin/g++
-build --action_env=LD=/usr/bin/ld
-build --host_action_env=CC=/usr/bin/gcc
-build --host_action_env=CXX=/usr/bin/g++
-build --host_action_env=LD=/usr/bin/ld
-
-# Prevent Bazel from inheriting PATH entries that include ccache wrappers
-build --action_env=PATH=/usr/bin:/bin
-build --host_action_env=PATH=/usr/bin:/bin
+# Bazel's auto-configured C++ toolchain picks up ccache from /usr/lib64/ccache/gcc.
+# ccache fails inside Bazel's sandbox (can't write to its cache dir).
+# Setting CCACHE_DISABLE=1 makes ccache transparently exec the real compiler
+# without caching, which works fine inside the sandbox.
+build --action_env=CCACHE_DISABLE=1
+build --host_action_env=CCACHE_DISABLE=1
