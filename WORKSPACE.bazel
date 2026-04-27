@@ -1,0 +1,2 @@
+# WORKSPACE.bazel
+# Empty - using Bzlmod (MODULE.bazel) for dependency management
